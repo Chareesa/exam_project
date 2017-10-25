@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Edit Profile</h2>
+    <a href="/friends/dashboard">Home</a>
+    <a href="/logout">Logout</a>
+
+    <form action="/friends/update/{{user.id}}" method="post">
+        {% csrf_token %}
+        <input type="text" name="name" value="{{user.name}}">
+        <input type="text" name="alias" value="{{user.alias}}">
+        <input type="email" name="email" value="{{user.email}}" style="width: 200px">
+        <p><input type="submit" value="Edit your profile"></p>
+    </form>
+
+
+</body>
+</html>

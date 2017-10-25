@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Login</title>
+    </head>
+    <body>
+        <div>
+            <h1>Welcome!</h1>
+        </div>
+
+        <div style="display: inline-block; outline:2px solid black; padding: 0 20px 20px 20px">
+            <h3>Register Here</h3>
+
+            {% if messages %}
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        
+            <form action='/register' method='post'>
+                {% csrf_token %}
+                <p>
+                    Name:  <input type='text' name='name' placeholder='Enter your name' style="float: right">
+                </p>
+                <p>
+                    Alias:  <input type='text' name='alias' placeholder='Enter Alias' style="float: right">
+                </p>
+                <p>
+                    Email:  <input type='email' name='email' placeholder='Enter email' style="float: right">
+                </p>
+                <p>
+                    <span style="font-size: 10px">*Password should be at least 8 characters</span></br>
+                    Password:  <input type='text' name='password' placeholder='Enter password' style="float: right">
+                </p>   
+                <p>
+                    Confirm PW:  &nbsp &nbsp<input type='text' name='c_password' placeholder='Confirm password' style="float: right">
+                </p>
+                <p>
+                    Date of Birth:  <input type="date" name="birthday" style="float: right">
+                </p>
+                <input type='submit' value='Register' style="float: right"><br>
+            </form>
+        </div>
+
+        <div style="display: inline-block; vertical-align: top; margin-left: 50px">
+            <h3>Login Here</h3>
+            {% if messages %}
+                {% for message in messages %}
+                <p style=" color: red"> {{ message }} </p>
+                {% endfor %}
+            {% endif %}
+            <form action='/login' method='post'>
+                {% csrf_token %}
+                <p><input type='email' name='email' placeholder='Enter email'></p>
+                <p><input type='text' name='password' placeholder='Enter password'></p>
+                <input type='submit' value='Login'><br>
+            </form>
+        </div>
+    </body>
+</html>

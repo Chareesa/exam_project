@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	    <meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	    <title>Dashboard</title>
+	</head>
+	<body>
+		<h1>Welcome, {{request.session.name}}</h1>
+		<p><a href="/friends/edit/{{request.session.id}}">Edit Profile</a><p>
+		<p><a href="/logout">Logout</a></p>
+
+		<h3>Here is a list of your friends:</h3>
+			<table>
+				<thead>
+					<tr style="background-color: lightgray">
+						<th style="outline: 2px solid black; padding:10px">Alias</th>
+						<th style="outline: 2px solid black; padding:10px">Action</th>
+					</tr>
+					{%for friend in friends%}
+						<tr>
+							<td style="outline: 2px solid black; padding:10px">{{friend.name}}</td>
+							<td style="outline: 2px solid black; padding:10px"><a href="/friends/profile/{{friend.id}}">View Profile</a> &nbsp <a href="/friends/delete/{{friend.id}}">Remove as Friend</a></td>
+						</tr>
+					{%endfor%}
+				</thead>
+		      </table>
+	    <h3>Other Users not on your friend's list:</h3>
+			<table>
+				<thead>    
+					<tr style="background-color: lightgray">
+						<th style="outline: 2px solid black; padding:10px">Alias</th>
+						<th style="outline: 2px solid black; padding:10px">Action</th>
+					</tr>
+					{%for user in other_users%}
+						<tr>
+							<td style="outline: 2px solid black; padding:10px"><a href="/friends/profile/{{user.id}}">{{user.name}}</a></td>
+							<td style="outline: 2px solid black; padding:10px"><a href="/friends/addFriend/{{user.id}}">Add as Friend</a></td>
+						</tr>
+					{%endfor%}
+				</thead>
+			</table>
+	</body>
+</html>
